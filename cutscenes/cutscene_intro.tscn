@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0rcy1yxmdt3i"]
+
+[ext_resource type="Script" uid="uid://do3mmknm4ioot" path="res://cutscenes/cutscene_intro.gd" id="1_b8nso"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ntbvd"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_b8nso"]
+font_size = 24
+
+[node name="Cutscene_Intro" type="Node2D"]
+script = ExtResource("1_b8nso")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1151.0
+offset_bottom = 647.0
+color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
+
+[node name="Intro_Text" type="Label" parent="."]
+offset_left = 130.0
+offset_top = 9.0
+offset_right = 979.0
+offset_bottom = 487.0
+size_flags_horizontal = 4
+text = "In an ancient land whose name is lost, 
+sits an old dungeon. This dungeon, 
+once a home to great and powerful kings 
+has been left desolate and overrun by 
+foul monsters.
+
+When left to their own devices,
+ these monsters run amok: They ransack villages and travelers alike. 
+So it was that they began to make sacrifices of their youngest daughters 
+so there could be peace. But one brother could not abide by this practice.
+
+She is in here… somewhere. Go now and find her.
+"
+label_settings = SubResource("LabelSettings_ntbvd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enter" type="Label" parent="."]
+offset_left = 409.0
+offset_top = 537.0
+offset_right = 697.0
+offset_bottom = 571.0
+text = "Press Enter to continue..."
+label_settings = SubResource("LabelSettings_b8nso")
