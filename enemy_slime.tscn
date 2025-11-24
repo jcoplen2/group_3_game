@@ -6,4 +6,5 @@
 [node name="Enemy" instance=ExtResource("1_k8dlg")]
 
 [node name="Sprite2D" parent="." index="0"]
+texture_filter = 1
 texture = ExtResource("2_shn5r")

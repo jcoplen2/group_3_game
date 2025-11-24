@@ -15,6 +15,7 @@ speed = 20.0
 max_health = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("2_c0xin")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

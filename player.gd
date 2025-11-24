@@ -4,6 +4,9 @@ extends CharacterBody2D
 @export var shield_speed_factor: float = 0.8  
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sword_hitbox: Area2D = $SwordHitbox
+@onready var sword_shape: CollisionShape2D = $SwordHitbox/CollisionShape2D
+@export var hitbox_offset := 10  
 
 var facing_dir: Vector2 = Vector2.DOWN
 var attacking: bool = false
@@ -168,3 +171,13 @@ func _start_shield() -> void:
 func _stop_shield() -> void:
 	shielding = false
 	_play_idle_anim()
+
+func _update_sword_hitbox_position():
+	var dir := Vector2.ZERO
+if abs(facing_dir.x) > abs(facing_dir.y):
+	dir = Vector2.RIGHT if facing_dir.x > 0 else Vector2.LEFT
+else:
+	
+
+func _on_sword_hitbox_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

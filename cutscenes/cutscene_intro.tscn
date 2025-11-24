@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0rcy1yxmdt3i"]
+[gd_scene load_steps=5 format=3 uid="uid://c0rcy1yxmdt3i"]
 
 [ext_resource type="Script" uid="uid://do3mmknm4ioot" path="res://cutscenes/cutscene_intro.gd" id="1_b8nso"]
+[ext_resource type="FontFile" uid="uid://dief23sgm6jbi" path="res://fonts/Poco.ttf" id="2_g0w1e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ntbvd"]
 font_size = 24
@@ -17,11 +18,10 @@ offset_bottom = 647.0
 color = Color(0.0142752165, 0.014275218, 0.014275218, 1)
 
 [node name="Intro_Text" type="Label" parent="."]
-offset_left = 130.0
-offset_top = 9.0
-offset_right = 979.0
-offset_bottom = 487.0
+offset_right = 1152.0
+offset_bottom = 547.0
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_g0w1e")
 text = "In an ancient land whose name is lost, 
 sits an old dungeon. This dungeon, 
 once a home to great and powerful kings 
@@ -40,9 +40,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Enter" type="Label" parent="."]
-offset_left = 409.0
-offset_top = 537.0
-offset_right = 697.0
-offset_bottom = 571.0
+offset_left = 860.0
+offset_top = 609.0
+offset_right = 1148.0
+offset_bottom = 643.0
+theme_override_fonts/font = ExtResource("2_g0w1e")
 text = "Press Enter to continue..."
 label_settings = SubResource("LabelSettings_b8nso")
