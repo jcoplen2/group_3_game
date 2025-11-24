@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bluv2l1urhtl2"]
 
 [ext_resource type="Texture2D" uid="uid://bfxbcxbcnqss0" path="res://tiles/dot_floor.png" id="1_ihfcg"]
-[ext_resource type="Script" uid="uid://gx1gq6dggitc" path="res://level_1.gd" id="1_rka8t"]
+[ext_resource type="Script" uid="uid://gx1gq6dggitc" path="res://levels/level_1.gd" id="1_rka8t"]
 [ext_resource type="Texture2D" uid="uid://da1fs81stfp4" path="res://tiles/bricks.png" id="2_rka8t"]
 [ext_resource type="Texture2D" uid="uid://cigc7brtx2kw5" path="res://tiles/stair.png" id="3_5hph3"]
 [ext_resource type="Texture2D" uid="uid://bpu5v2to3h7aq" path="res://tiles/frills_yay.png" id="4_j7kpp"]
@@ -54,3 +54,9 @@ layer_0/tile_data = PackedInt32Array(65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 6554
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
 position = Vector2(128, 7.5)
 shape = SubResource("RectangleShape2D_5hph3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(114, 82)
+zoom = Vector2(5, 4)
+
+[connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
