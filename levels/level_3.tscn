@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqikmgj4untdm"]
+[gd_scene load_steps=18 format=3 uid="uid://cqikmgj4untdm"]
 
 [ext_resource type="Script" uid="uid://cf53v7gxi5kg1" path="res://levels/level_3.gd" id="1_fmu3g"]
 [ext_resource type="Texture2D" uid="uid://bv2xlsgm6pwvv" path="res://tiles/rect1.png" id="2_7ds5r"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cigc7brtx2kw5" path="res://tiles/stair.png" id="4_liaj6"]
 [ext_resource type="Texture2D" uid="uid://bpu5v2to3h7aq" path="res://tiles/frills_yay.png" id="5_b60u5"]
 [ext_resource type="Texture2D" uid="uid://bh3qstjmol1qc" path="res://tiles/frills_nay.png" id="6_kmy7e"]
+[ext_resource type="PackedScene" uid="uid://dwohsqn4kcivk" path="res://enemy_slime.tscn" id="8_jq78i"]
+[ext_resource type="PackedScene" uid="uid://bwjoa1kgtbukf" path="res://enemy_main.tscn" id="9_lsnkt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_liaj6"]
 texture = ExtResource("2_7ds5r")
@@ -65,3 +67,9 @@ shape = SubResource("RectangleShape2D_5hph3")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(114, 82)
 zoom = Vector2(5, 4)
+
+[node name="Enemy" parent="." instance=ExtResource("8_jq78i")]
+position = Vector2(112, 113)
+
+[node name="Enemy2" parent="." instance=ExtResource("9_lsnkt")]
+position = Vector2(112, 44)
