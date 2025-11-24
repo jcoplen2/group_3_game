@@ -39,3 +39,7 @@ func take_damage(amount: int) -> void:
 	health -= amount
 	if health <= 0:
 		queue_free()
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		body.take_damage()
