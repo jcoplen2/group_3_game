@@ -1,3 +1,63 @@
-[gd_scene format=3 uid="uid://bi1ldnx6l367t"]
+[gd_scene load_steps=16 format=3 uid="uid://cqikmgj4untdm"]
+
+[ext_resource type="Script" uid="uid://cf53v7gxi5kg1" path="res://level_3.gd" id="1_fmu3g"]
+[ext_resource type="Texture2D" uid="uid://bv2xlsgm6pwvv" path="res://tiles/rect1.png" id="2_7ds5r"]
+[ext_resource type="Texture2D" uid="uid://bfxbcxbcnqss0" path="res://tiles/dot_floor.png" id="2_fmu3g"]
+[ext_resource type="Texture2D" uid="uid://da1fs81stfp4" path="res://tiles/bricks.png" id="3_7ds5r"]
+[ext_resource type="Texture2D" uid="uid://cigc7brtx2kw5" path="res://tiles/stair.png" id="4_liaj6"]
+[ext_resource type="Texture2D" uid="uid://bpu5v2to3h7aq" path="res://tiles/frills_yay.png" id="5_b60u5"]
+[ext_resource type="Texture2D" uid="uid://bh3qstjmol1qc" path="res://tiles/frills_nay.png" id="6_kmy7e"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_liaj6"]
+texture = ExtResource("2_7ds5r")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bjebc"]
+texture = ExtResource("2_fmu3g")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rr72"]
+texture = ExtResource("3_7ds5r")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gyffv"]
+texture = ExtResource("4_liaj6")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1pe0h"]
+texture = ExtResource("5_b60u5")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7kpp"]
+texture = ExtResource("6_kmy7e")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_27bay"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_bjebc")
+sources/2 = SubResource("TileSetAtlasSource_5rr72")
+sources/3 = SubResource("TileSetAtlasSource_gyffv")
+sources/4 = SubResource("TileSetAtlasSource_1pe0h")
+sources/5 = SubResource("TileSetAtlasSource_j7kpp")
+sources/0 = SubResource("TileSetAtlasSource_liaj6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hph3"]
+size = Vector2(30, 13)
 
 [node name="Level3" type="Node2D"]
+script = ExtResource("1_fmu3g")
+
+[node name="TileMap_lvl_3" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_27bay")
+format = 2
+layer_0/tile_data = PackedInt32Array(65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 131084, 1, 0, 196620, 1, 0, 262156, 1, 0, 327692, 1, 0, 393228, 1, 0, 458764, 1, 0, 524300, 1, 0, 524299, 1, 0, 524298, 1, 0, 524297, 1, 0, 524296, 1, 0, 524295, 1, 0, 524294, 1, 0, 524293, 1, 0, 524292, 1, 0, 524291, 1, 0, 524290, 1, 0, 524289, 1, 0, 458753, 1, 0, 393217, 1, 0, 327681, 1, 0, 262145, 1, 0, 196609, 1, 0, 131073, 1, 0, 131083, 0, 0, 131082, 0, 0, 131081, 0, 0, 131080, 1, 0, 131079, 1, 0, 131078, 1, 0, 131077, 1, 0, 131076, 0, 0, 131075, 0, 0, 131074, 0, 0, 327682, 0, 0, 393218, 0, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 393227, 0, 0, 327691, 0, 0, 262155, 0, 0, 196619, 0, 0, 196618, 1, 0, 196617, 1, 0, 196616, 1, 0, 196615, 1, 0, 196614, 1, 0, 196613, 1, 0, 196612, 1, 0, 196611, 1, 0, 196610, 0, 0, 262146, 0, 0, 262147, 1, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 327690, 1, 0, 393226, 0, 0, 262154, 1, 0, 393225, 0, 0, 393224, 1, 0, 393223, 1, 0, 393222, 1, 0, 393221, 1, 0, 393220, 0, 0, 393219, 0, 0, 327683, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 524288, 2, 0, 589824, 2, 0, 589825, 2, 0, 589826, 2, 0, 589827, 2, 0, 589828, 2, 0, 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 524301, 2, 0, 458765, 2, 0, 393229, 2, 0, 196621, 2, 0, 327693, 2, 0, 262157, 2, 0, 458752, 2, 0, 393216, 2, 0, 327680, 2, 0, 262144, 2, 0, 196608, 2, 0, 131072, 2, 0, 65536, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 6, 2, 0, 7, 3, 1610612736, 8, 3, 1342177280, 9, 2, 0, 10, 2, 0, 11, 2, 0, 12, 2, 0, 65549, 2, 0, 131085, 2, 0, 13, 2, 0, 327684, 1, 0, 327689, 1, 0)
+
+[node name="Exit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+position = Vector2(128, 7.5)
+shape = SubResource("RectangleShape2D_5hph3")
