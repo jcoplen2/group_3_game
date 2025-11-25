@@ -12,6 +12,7 @@ empty_heart = ExtResource("3_8sq4i")
 [node name="Root" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+scale = Vector2(1.5, 1.5)
 
 [node name="MarginContainer" type="MarginContainer" parent="Root"]
 layout_mode = 0
