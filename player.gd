@@ -12,6 +12,7 @@ var invincible: bool = false
 @onready var sword_hitbox: Area2D = $SwordHitbox
 @onready var sword_shape: CollisionShape2D = $SwordHitbox/CollisionShape2D
 @export var hitbox_offset := 10  
+@onready var sprite := $AnimatedSprite2D
 
 var facing_dir: Vector2 = Vector2.DOWN
 var attacking: bool = false
@@ -22,6 +23,7 @@ signal health_changed(current: int, max: int)
 func _ready() -> void:
 	health = max_health
 	emit_signal("health_changed", health, max_health)
+	_start_invincibility()
 
 func _physics_process(_delta: float) -> void:
 	if attacking:
@@ -221,19 +223,28 @@ func _on_SwordHitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
 		body.take_damage(1, global_position)
 
+func _flash_damage() -> void:
+	var tween := create_tween()
+	
+	# Flash red
+	tween.tween_property(sprite, "modulate", Color(1, 0.3, 0.3), 0.08)
+	# Back to normal
+	tween.tween_property(sprite, "modulate", Color(1, 1, 1), 0.08)
+	# Flash again
+	tween.tween_property(sprite, "modulate", Color(1, 0.3, 0.3), 0.08)
+	# Final return
+	tween.tween_property(sprite, "modulate", Color(1, 1, 1), 0.08)
 
-func take_damage(amount: int, _from_position: Vector2 = Vector2.ZERO) -> void:
+func take_damage(amount: int, from_position: Vector2 = Vector2.ZERO) -> void:
 	if invincible:
 		return
-		
 	if shielding:
 		return
-
 	health -= amount
 	print("Player took ", amount, " damage. Health: ", health)
-
-	emit_signal("health_changed", health, max_health)  
-
+	emit_signal("health_changed", health, max_health)
+	_flash_damage()
+	_start_invincibility()
 	if health <= 0:
 		_die()
 	else:
