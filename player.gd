@@ -174,9 +174,9 @@ func _stop_shield() -> void:
 
 func _update_sword_hitbox_position():
 	var dir := Vector2.ZERO
-if abs(facing_dir.x) > abs(facing_dir.y):
-	dir = Vector2.RIGHT if facing_dir.x > 0 else Vector2.LEFT
-else:
+	if abs(facing_dir.x) > abs(facing_dir.y):
+		dir = Vector2.RIGHT if facing_dir.x > 0 else Vector2.LEFT
+	else: pass
 	
 
 func _on_sword_hitbox_body_entered(body: Node2D) -> void:
