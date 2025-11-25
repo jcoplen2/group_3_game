@@ -120,3 +120,4 @@ position = Vector2(54, 72)
 [node name="HUD" parent="." instance=ExtResource("17_svivd")]
 
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
+[connection signal="health_changed" from="Player" to="HUD" method="_on_player_health_changed"]

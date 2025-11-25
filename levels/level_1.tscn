@@ -117,7 +117,7 @@ zoom = Vector2(5, 4)
 position = Vector2(46, 47)
 
 [node name="Enemy2" parent="." instance=ExtResource("8_3sk1a")]
-position = Vector2(155, 106)
+position = Vector2(195, 103)
 collision_layer = 1
 
 [node name="Player" parent="." instance=ExtResource("14_betor")]
