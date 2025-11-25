@@ -3,6 +3,11 @@ extends CharacterBody2D
 @export var move_speed: float = 80.0
 @export var shield_speed_factor: float = 0.8  
 
+@export var max_health: int = 3
+var health: int
+var invincible: bool = false
+@export var invincibility_time: float = 0.5  
+
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sword_hitbox: Area2D = $SwordHitbox
 @onready var sword_shape: CollisionShape2D = $SwordHitbox/CollisionShape2D
@@ -12,7 +17,9 @@ var facing_dir: Vector2 = Vector2.DOWN
 var attacking: bool = false
 var shielding: bool = false
 
-
+func _ready() -> void:
+	health = max_health
+	
 func _physics_process(_delta: float) -> void:
 	if attacking:
 		velocity = Vector2.ZERO
@@ -181,3 +188,26 @@ func _update_sword_hitbox_position():
 
 func _on_sword_hitbox_body_entered(body: Node2D) -> void:
 	pass # Replace with function body.
+	
+func take_damage(amount: int) -> void:
+	if invincible:
+		return
+		
+	if shielding:
+		return
+
+	health -= amount
+	print("Player took ", amount, " damage. Health: ", health)
+
+	if health <= 0:
+		_die()
+	else:
+		_start_invincibility()
+		
+func _start_invincibility() -> void:
+	invincible = true
+	await get_tree().create_timer(invincibility_time).timeout
+	invincible = false
+
+func _die() -> void:
+	get_tree().change_scene_to_file("res://cutscenes/cutscene_fail.tscn")

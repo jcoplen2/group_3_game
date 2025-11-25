@@ -42,4 +42,5 @@ func take_damage(amount: int) -> void:
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		body.take_damage()
+		body.take_damage(1)
+		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cqikmgj4untdm"]
+[gd_scene load_steps=20 format=3 uid="uid://cqikmgj4untdm"]
 
 [ext_resource type="Script" uid="uid://cf53v7gxi5kg1" path="res://levels/level_3.gd" id="1_fmu3g"]
 [ext_resource type="Texture2D" uid="uid://bv2xlsgm6pwvv" path="res://tiles/rect1.png" id="2_7ds5r"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dwohsqn4kcivk" path="res://enemy_slime.tscn" id="8_jq78i"]
 [ext_resource type="PackedScene" uid="uid://bwjoa1kgtbukf" path="res://enemy_main.tscn" id="9_lsnkt"]
 [ext_resource type="PackedScene" uid="uid://c7vqtt26f80kh" path="res://player.tscn" id="10_lsnkt"]
+[ext_resource type="PackedScene" uid="uid://dcb73d2tsx4w6" path="res://npc.tscn" id="11_wj73x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_liaj6"]
 texture = ExtResource("2_7ds5r")
@@ -78,5 +79,8 @@ position = Vector2(112, 44)
 
 [node name="Player" parent="." instance=ExtResource("10_lsnkt")]
 position = Vector2(111, 137)
+
+[node name="NPC" parent="." instance=ExtResource("11_wj73x")]
+position = Vector2(54, 72)
 
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
