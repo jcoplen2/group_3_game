@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcb73d2tsx4w6"]
+
+[ext_resource type="Texture2D" uid="uid://dxubtyo52fa4o" path="res://images/Sister_NPC.png" id="1_ideak"]
+[ext_resource type="Script" uid="uid://b4io1kby7e5ma" path="res://npc.gd" id="1_xxcha"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxcha"]
+atlas = ExtResource("1_ideak")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh24r"]
+atlas = ExtResource("1_ideak")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ul7y6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxcha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh24r")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bc6q4"]
+size = Vector2(10, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ideak"]
+size = Vector2(14, 16)
+
+[node name="NPC" type="CharacterBody2D"]
+script = ExtResource("1_xxcha")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ul7y6")
+animation = &"walk"
+frame_progress = 0.8950828
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_bc6q4")
+
+[node name="Trigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ideak")
