@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwjoa1kgtbukf"]
+
+[ext_resource type="Script" uid="uid://doieqw567yet" path="res://enemy.gd" id="1_rm24k"]
+[ext_resource type="Texture2D" uid="uid://c7awj0sjecqto" path="res://images/enemy_2.png" id="2_c0xin"]
+[ext_resource type="Script" uid="uid://lisgm5x2v60k" path="res://poof.gd" id="3_c0xin"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yruks"]
+size = Vector2(13.5, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rm24k"]
+size = Vector2(15, 11)
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 3
+script = ExtResource("1_rm24k")
+speed = 20.0
+max_health = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_c0xin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_yruks")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_rm24k")
+
+[node name="Poof" type="Node2D" parent="."]
+visible = false
+script = ExtResource("3_c0xin")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

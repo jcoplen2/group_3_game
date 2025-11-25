@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://d0u5es0d7vhgm"]
+
+[node name="HUD" type="Node2D"]
