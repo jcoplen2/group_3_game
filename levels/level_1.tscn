@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bluv2l1urhtl2"]
+[gd_scene load_steps=28 format=4 uid="uid://bluv2l1urhtl2"]
 
 [ext_resource type="Texture2D" uid="uid://bfxbcxbcnqss0" path="res://tiles/dot_floor.png" id="1_ihfcg"]
 [ext_resource type="Script" uid="uid://gx1gq6dggitc" path="res://levels/level_1.gd" id="1_rka8t"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://i3rd3xsajdim" path="res://tiles/floor_tile.png" id="10_betor"]
 [ext_resource type="Texture2D" uid="uid://cr0gwvf2xq722" path="res://tiles/rect3.png" id="11_vjtdm"]
 [ext_resource type="PackedScene" uid="uid://c7vqtt26f80kh" path="res://player.tscn" id="14_betor"]
+[ext_resource type="PackedScene" uid="uid://d0u5es0d7vhgm" path="res://hud.tscn" id="15_vjtdm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08mmt"]
 texture = ExtResource("2_3sk1a")
@@ -122,4 +123,7 @@ collision_layer = 1
 [node name="Player" parent="." instance=ExtResource("14_betor")]
 position = Vector2(103, 137)
 
+[node name="HUD" parent="." instance=ExtResource("15_vjtdm")]
+
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
+[connection signal="health_changed" from="Player" to="HUD" method="_on_player_health_changed"]

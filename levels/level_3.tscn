@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cqikmgj4untdm"]
+[gd_scene load_steps=31 format=3 uid="uid://cqikmgj4untdm"]
 
 [ext_resource type="Script" uid="uid://cf53v7gxi5kg1" path="res://levels/level_3.gd" id="1_fmu3g"]
 [ext_resource type="Texture2D" uid="uid://bv2xlsgm6pwvv" path="res://tiles/rect1.png" id="2_7ds5r"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dvlfe3ycpscnv" path="res://tiles/dot_floor_tile.png" id="11_46211"]
 [ext_resource type="PackedScene" uid="uid://dcb73d2tsx4w6" path="res://npc.tscn" id="11_wj73x"]
 [ext_resource type="Texture2D" uid="uid://cr0gwvf2xq722" path="res://tiles/rect3.png" id="12_t5hu4"]
+[ext_resource type="PackedScene" uid="uid://d0u5es0d7vhgm" path="res://hud.tscn" id="17_svivd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_liaj6"]
 texture = ExtResource("2_7ds5r")
@@ -115,5 +116,7 @@ position = Vector2(111, 137)
 
 [node name="NPC" parent="." instance=ExtResource("11_wj73x")]
 position = Vector2(54, 72)
+
+[node name="HUD" parent="." instance=ExtResource("17_svivd")]
 
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

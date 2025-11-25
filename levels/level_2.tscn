@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bx71aofdu8hk5"]
+[gd_scene load_steps=29 format=3 uid="uid://bx71aofdu8hk5"]
 
 [ext_resource type="Script" uid="uid://ycbthx1jm2ll" path="res://levels/level_2.gd" id="1_7j8ne"]
 [ext_resource type="Texture2D" uid="uid://bfxbcxbcnqss0" path="res://tiles/dot_floor.png" id="2_0s5r2"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dwohsqn4kcivk" path="res://enemy_slime.tscn" id="9_sd18g"]
 [ext_resource type="Texture2D" uid="uid://cr0gwvf2xq722" path="res://tiles/rect3.png" id="11_0ourt"]
 [ext_resource type="PackedScene" uid="uid://c7vqtt26f80kh" path="res://player.tscn" id="11_vm7no"]
+[ext_resource type="PackedScene" uid="uid://d0u5es0d7vhgm" path="res://hud.tscn" id="15_0ourt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ehv2h"]
 texture = ExtResource("2_7j8ne")
@@ -117,5 +118,7 @@ collision_layer = 1
 
 [node name="Player" parent="." instance=ExtResource("11_vm7no")]
 position = Vector2(117, 137)
+
+[node name="HUD" parent="." instance=ExtResource("15_0ourt")]
 
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

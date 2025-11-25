@@ -17,10 +17,11 @@ var facing_dir: Vector2 = Vector2.DOWN
 var attacking: bool = false
 var shielding: bool = false
 
+signal health_changed(current: int, max: int)
 
 func _ready() -> void:
 	health = max_health
-
+	emit_signal("health_changed", health, max_health)
 
 func _physics_process(_delta: float) -> void:
 	if attacking:
@@ -221,7 +222,7 @@ func _on_SwordHitbox_body_entered(body: Node2D) -> void:
 		body.take_damage(1, global_position)
 
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, _from_position: Vector2 = Vector2.ZERO) -> void:
 	if invincible:
 		return
 		
@@ -231,10 +232,13 @@ func take_damage(amount: int) -> void:
 	health -= amount
 	print("Player took ", amount, " damage. Health: ", health)
 
+	emit_signal("health_changed", health, max_health)  
+
 	if health <= 0:
 		_die()
 	else:
 		_start_invincibility()
+
 
 
 func _start_invincibility() -> void:

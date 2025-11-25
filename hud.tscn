@@ -1,3 +1,37 @@
-[gd_scene format=3 uid="uid://d0u5es0d7vhgm"]
+[gd_scene load_steps=4 format=3 uid="uid://d0u5es0d7vhgm"]
 
-[node name="HUD" type="Node2D"]
+[ext_resource type="Script" uid="uid://dx1qn28g4da42" path="res://hud.gd" id="1_64ctp"]
+[ext_resource type="Texture2D" uid="uid://cu16oomdmgjg4" path="res://images/heart_icon.png" id="2_8sq4i"]
+[ext_resource type="Texture2D" uid="uid://cnb4mr42fcgt0" path="res://images/empty_heart_icon.png" id="3_8sq4i"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_64ctp")
+full_heart = ExtResource("2_8sq4i")
+empty_heart = ExtResource("3_8sq4i")
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Root"]
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 22.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Root/MarginContainer"]
+layout_mode = 2
+
+[node name="Heart0" type="TextureRect" parent="Root/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_8sq4i")
+stretch_mode = 5
+
+[node name="Heart1" type="TextureRect" parent="Root/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_8sq4i")
+stretch_mode = 3
+
+[node name="Heart2" type="TextureRect" parent="Root/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_8sq4i")
+stretch_mode = 3
