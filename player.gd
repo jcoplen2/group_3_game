@@ -17,9 +17,11 @@ var facing_dir: Vector2 = Vector2.DOWN
 var attacking: bool = false
 var shielding: bool = false
 
+
 func _ready() -> void:
 	health = max_health
-	
+
+
 func _physics_process(_delta: float) -> void:
 	if attacking:
 		velocity = Vector2.ZERO
@@ -65,7 +67,7 @@ func _play_walk_anim(dir: Vector2) -> void:
 
 	if abs(dir.x) > abs(dir.y):
 		anim_name = "walk_side"
-		anim.flip_h = dir.x < 0.0  # left/right
+		anim.flip_h = dir.x < 0.0
 	else:
 		anim.flip_h = false
 		if dir.y > 0.0:
@@ -102,7 +104,7 @@ func _play_shield_walk_anim(dir: Vector2) -> void:
 
 	if abs(dir.x) > abs(dir.y):
 		anim_name = "shield_side"
-		anim.flip_h = dir.x < 0.0  # left/right
+		anim.flip_h = dir.x < 0.0
 	else:
 		anim.flip_h = false
 		if dir.y > 0.0:
@@ -131,25 +133,27 @@ func _play_shield_idle_anim() -> void:
 		anim.animation = anim_name
 
 	anim.stop()
-	anim.frame = 0  # still shield pose
+	anim.frame = 0
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Attack (only if not shielding/attacking)
 	if event.is_action_pressed("attack") and not attacking and not shielding:
 		_start_attack()
 
-	# Start shield
 	if event.is_action_pressed("shield") and not shielding and not attacking:
 		_start_shield()
 
-	# Stop shield when button released
 	if event.is_action_released("shield") and shielding:
 		_stop_shield()
 
 
 func _start_attack() -> void:
 	attacking = true
+
+	# Position hitbox + enable hitbox
+	_update_sword_hitbox_position()
+	_set_sword_hitbox_active(true)
+
 	var anim_name := ""
 
 	if abs(facing_dir.x) > abs(facing_dir.y):
@@ -166,6 +170,9 @@ func _start_attack() -> void:
 
 	await anim.animation_finished
 
+	# Disable hitbox after attack
+	_set_sword_hitbox_active(false)
+
 	attacking = false
 	_play_idle_anim()
 
@@ -179,16 +186,41 @@ func _stop_shield() -> void:
 	shielding = false
 	_play_idle_anim()
 
-func _update_sword_hitbox_position():
-	var dir := Vector2.ZERO
-	if abs(facing_dir.x) > abs(facing_dir.y):
-		dir = Vector2.RIGHT if facing_dir.x > 0 else Vector2.LEFT
-	else: pass
-	
 
-func _on_sword_hitbox_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
-	
+func _update_sword_hitbox_position() -> void:
+	var dir := Vector2.ZERO
+
+	if abs(facing_dir.x) > abs(facing_dir.y):
+		if facing_dir.x > 0.0:
+			dir = Vector2.RIGHT
+		else:
+			dir = Vector2.LEFT
+	else:
+		if facing_dir.y > 0.0:
+			dir = Vector2.DOWN
+		else:
+			dir = Vector2.UP
+
+	sword_hitbox.position = dir * float(hitbox_offset)
+
+	if dir == Vector2.UP:
+		sword_hitbox.rotation_degrees = -90.0
+	elif dir == Vector2.DOWN:
+		sword_hitbox.rotation_degrees = 90.0
+	else:
+		sword_hitbox.rotation_degrees = 0.0
+
+
+func _set_sword_hitbox_active(active: bool) -> void:
+	sword_hitbox.monitoring = active
+	sword_hitbox.monitorable = active
+	sword_shape.disabled = not active
+
+func _on_SwordHitbox_body_entered(body: Node2D) -> void:
+	if body.has_method("take_damage"):
+		body.take_damage(1, global_position)
+
+
 func take_damage(amount: int) -> void:
 	if invincible:
 		return
@@ -203,11 +235,13 @@ func take_damage(amount: int) -> void:
 		_die()
 	else:
 		_start_invincibility()
-		
+
+
 func _start_invincibility() -> void:
 	invincible = true
 	await get_tree().create_timer(invincibility_time).timeout
 	invincible = false
+
 
 func _die() -> void:
 	get_tree().change_scene_to_file("res://cutscenes/cutscene_fail.tscn")
